@@ -1,19 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, StatusBar, ImageBackground, Image, TouchableOpacity } from 'react-native';
+// import Navigator from './src/navigation/Navigator';
+import { createStackNavigator } from 'react-navigation-stack';
+
+import Navigator from './src/navigation/Navigator'
+import InicioScreen from "./src/screen/InicioScreen";
+import RegisterScreen from "./src/screen/RegisterScreen";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <Navigator />
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
