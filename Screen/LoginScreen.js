@@ -74,7 +74,7 @@ const LoginScreen = props => {
 
   return (
     <ImageBackground style={ styles.imgBackground }
-    source={require('../Image/geometry-background.png')}
+    source={require('../Image/white-background2.jpg')}
     resizeMode='cover'
     > 
       <View style={styles.mainBody}>
@@ -93,9 +93,7 @@ const LoginScreen = props => {
                     marginVertical: 20, 
                   }}
                 /> */}
-                <Text style={styles.titleTextStyle}>
-                  F Y P O
-                </Text>
+                <Image source={require('../Image/fypo.png')} style={{ width: 350, height: 150 }} />
               </View>
               <View style={styles.SectionStyle}>
                 <TextInput

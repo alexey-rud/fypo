@@ -2,19 +2,11 @@
 import React from 'react';
 
 //Import all required component
-import { View, Text, StyleSheet, ImageBackground, SafeAreaView, FlatList, Image } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, SafeAreaView, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 
 // Dependencia UI
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
-
-// Base de datos provisional
-const prendas_ropa = [
-  {
-     name: 'Chaqueta de cuero',
-     avatar: 'https://www.outlete.es/tienda/28973-large_default/chaqueta-moto-cuero-bstar-classic-jacket.jpg'
-  }
- ]
+import { Card, ListItem, Button, Icon, Image } from 'react-native-elements'
 
 const HomeScreen = () => {
   global.currentScreenIndex = 'HomeScreen';
