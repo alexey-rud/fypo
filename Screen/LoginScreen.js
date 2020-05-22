@@ -26,11 +26,11 @@ const LoginScreen = props => {
   const handleSubmitPress = () => {
     setErrortext('');
     if (!userEmail) {
-      alert('Please fill Email');
+      alert('Por favor, introduce un e-mail.');
       return;
     }
     if (!userPassword) {
-      alert('Please fill Password');
+      alert('Por favor, introduce una contraseña.');
       return;
     }
     setLoading(true);
@@ -61,7 +61,7 @@ const LoginScreen = props => {
           console.log(responseJson.data[0].user_id);
           props.navigation.navigate('DrawerNavigationRoutes');
         } else {
-          setErrortext('Please check your email id or password');
+          setErrortext('E-mail o contraseña inválidos.');
           console.log('Please check your email id or password');
         }
       })

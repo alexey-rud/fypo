@@ -32,6 +32,7 @@ const Auth = createStackNavigator({
   },
 });
 
+
 /* Switch Navigator for those screens which needs to be switched only once
   and we don't want to switch back once we switch from them to the next one */
 const App = createSwitchNavigator({ 
