@@ -104,7 +104,7 @@ const RegisterScreen = props => {
   }
   return (
     <ImageBackground style={ styles.imgBackground }
-    source={require('../Image/white-wood-texture-background.png')}
+    source={require('../Image/geometry-background.png')}
     resizeMode='cover'
     > 
       <View style={{ flex: 1, }}>
@@ -130,7 +130,7 @@ const RegisterScreen = props => {
                 style={styles.inputStyle}
                 onChangeText={UserName => setUserName(UserName)}
                 underlineColorAndroid="#000000"
-                placeholder="Enter Name"
+                placeholder="Tu nombre aquí"
                 placeholderTextColor="#000000"
                 autoCapitalize="sentences"
                 returnKeyType="next"
@@ -145,7 +145,7 @@ const RegisterScreen = props => {
                 style={styles.inputStyle}
                 onChangeText={UserEmail => setUserEmail(UserEmail)}
                 underlineColorAndroid="#000000"
-                placeholder="Enter Email"
+                placeholder="Tu e-mail aquí"
                 placeholderTextColor="#000000"
                 keyboardType="email-address"
                 // ref={ref => {
@@ -161,7 +161,7 @@ const RegisterScreen = props => {
                 style={styles.inputStyle}
                 onChangeText={UserAge => setUserAge(UserAge)}
                 underlineColorAndroid="#000000"
-                placeholder="Enter Age"
+                placeholder="Tu edad aquí"
                 placeholderTextColor="#000000"
                 keyboardType="numeric"
                 // ref={ref => {
@@ -180,7 +180,7 @@ const RegisterScreen = props => {
               style={styles.buttonStyle}
               activeOpacity={0.5}
               onPress={handleSubmitButton}>
-              <Text style={styles.buttonTextStyle}>REGISTER</Text>
+              <Text style={styles.buttonTextStyle}>REGISTRO</Text>
             </TouchableOpacity>
           </KeyboardAvoidingView>
         </ScrollView>
@@ -247,7 +247,6 @@ const styles = StyleSheet.create({
   titleTextStyle: {
     color: 'black',
     textAlign: 'center',
-    fontStyle: 'italic',
     fontSize: 110,
   },
 });

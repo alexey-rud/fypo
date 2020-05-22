@@ -74,7 +74,7 @@ const LoginScreen = props => {
 
   return (
     <ImageBackground style={ styles.imgBackground }
-    source={require('../Image/white-wood-texture-background.png')}
+    source={require('../Image/geometry-background.png')}
     resizeMode='cover'
     > 
       <View style={styles.mainBody}>
@@ -84,7 +84,7 @@ const LoginScreen = props => {
             <KeyboardAvoidingView enabled>
               <View style={{ alignItems: 'center' }}>
                 {/* <Image
-                  source={require('../Image/armario_small.png')}
+                  source={require('../Image/geometry-background.png')}
                   style={{
                     width: '100%',
                     height: 200,
@@ -102,7 +102,7 @@ const LoginScreen = props => {
                   style={styles.inputStyle}
                   onChangeText={UserEmail => setUserEmail(UserEmail)}
                   underlineColorAndroid="#000000"
-                  placeholder="Enter Email" //dummy@abc.com
+                  placeholder="Tu e-mail aquí" //dummy@abc.com
                   placeholderTextColor="#000000"
                   autoCapitalize="none"
                   keyboardType="email-address"
@@ -121,7 +121,7 @@ const LoginScreen = props => {
                   style={styles.inputStyle}
                   onChangeText={UserPassword => setUserPassword(UserPassword)}
                   underlineColorAndroid="#000000"
-                  placeholder="Enter Password" //12345
+                  placeholder="Tu contraseña aquí" //12345
                   placeholderTextColor="#000000"
                   keyboardType="default"
                   // ref={ref => {
@@ -144,12 +144,12 @@ const LoginScreen = props => {
               <Text
                 style={styles.registerTextStyle}
                 onPress={() => props.navigation.navigate('RegisterScreen')}>
-                New Here ? Register
+                ¿Nuevo? ¡Regístrate!
               </Text>
               <Text
                 style={styles.tryTextStyle}
                 onPress={() => props.navigation.navigate('HomeScreen')}>
-                Test first before registering 
+                Opción de test para no-registrados
               </Text>
             </KeyboardAvoidingView>
           </View>
@@ -218,12 +218,11 @@ const styles = StyleSheet.create({
   errorTextStyle: {
     color: 'red',
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 14
   },
   titleTextStyle: {
     color: 'black',
     textAlign: 'center',
-    fontStyle: 'italic',
     fontSize: 110,
   },
   tryTextStyle: {
