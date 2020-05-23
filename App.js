@@ -10,6 +10,7 @@ import SplashScreen from './Screen/SplashScreen';
 import LoginScreen from './Screen/LoginScreen';
 import RegisterScreen from './Screen/RegisterScreen';
 import DrawerNavigationRoutes from './Screen/DrawerNavigationRoutes';
+import SurveyScreen from './Screen/tabsScreens/SurveyScreen';
 
 const Auth = createStackNavigator({
   //Stack Navigator for Login and Sign up Screen
@@ -21,6 +22,17 @@ const Auth = createStackNavigator({
   },
   RegisterScreen: {
     screen: RegisterScreen,
+    navigationOptions: {
+      title: 'Back',
+      headerStyle: {
+        backgroundColor: null,
+      },
+      headerShown: false,   
+      headerTintColor: 'black',
+    },
+  },
+  SurveyScreen: {
+    screen: SurveyScreen,
     navigationOptions: {
       title: 'Back',
       headerStyle: {

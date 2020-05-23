@@ -14,6 +14,7 @@ import HomeScreen from './tabsScreens/HomeScreen';
 import SearchScreen from './tabsScreens/SearchScreen';
 import UploadScreen from './tabsScreens/UploadScreen';
 import ProfileScreen from './tabsScreens/ProfileScreen';
+import SurveyScreen from './tabsScreens/SurveyScreen';
 import CustomSidebarMenu from './Components/CustomSidebarMenu';
 import NavigationDrawerHeader from './Components/NavigationDrawerHeader';
 

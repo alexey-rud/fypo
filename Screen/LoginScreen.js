@@ -146,7 +146,7 @@ const LoginScreen = props => {
               </Text>
               <Text
                 style={styles.tryTextStyle}
-                onPress={() => props.navigation.navigate('HomeScreen')}>
+                onPress={() => props.navigation.navigate('SurveyScreen')}>
                 Opción de test para no-registrados
               </Text>
             </KeyboardAvoidingView>
@@ -173,23 +173,23 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    // backgroundColor: '#b4ebee',
-    borderWidth: 5,
-    color: '#000000',
-    borderColor: '#000000',
-    height: 50,
+    backgroundColor: '#c3f9f9',
+    borderWidth: 0,
+    color: '#FFFFFF',
+    borderColor: '#c3f9f9',
+    height: 40,
     alignItems: 'center',
-    borderRadius: 30,
+    borderRadius: 40,
     marginLeft: 35,
     marginRight: 35,
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: 20,
   },
   buttonTextStyle: {
     color: '#000000',
-    paddingVertical: 0,
-    fontWeight: 'bold',
-    fontSize: 30,
+    color: '#000000',
+    paddingVertical: 10,
+    fontSize: 16,
   },
   inputStyle: {
     flex: 1,
