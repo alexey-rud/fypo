@@ -8,53 +8,70 @@ import Constants from 'expo-constants';
 // Dependencia UI
 import { Card, ListItem, Button, Icon, Image } from 'react-native-elements'
 
-const HomeScreen = () => {
-  global.currentScreenIndex = 'HomeScreen';
-  return (
-    <View style={styles.container}>
-      <ImageBackground source={require('../../Image/white-background.jpg')} style={styles.image}>
-         {/* Aquí irá el nombre del armario que el user haya puesto*/}
-        <Card
-          title='CAJÓN DE SASTRE'
-          image={require('../../Image/chaqueta.jpg')}>
-          {/*Descripción de la prenda*/}
-          <Text style={{marginBottom: 10}}>
-            Una chaqueta de cuero heavy.
-          </Text>
-          <Button
-            icon={<Icon name='star' color='#ffffff' />}
-            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 5}}
-            title='' />
+// Dependencia carousel
+import Carousel from 'react-native-snap-carousel';
 
-          <Button
-            icon={<Icon name='shop' color='#ffffff' />}
-            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-            title='' />
-        </Card>
-      </ImageBackground>
-    </View>
-  );
-};
+export default class HomeScreen extends React.Component {
+ 
+  constructor(props){
+      super(props);
+      this.state = {
+        activeIndex:0,
+        carouselItems: [
+        {
+            title:"Item 1",
+            text: "Text 1",
+        },
+        {
+            title:"Item 2",
+            text: "Text 2",
+        },
+        {
+            title:"Item 3",
+            text: "Text 3",
+        },
+        {
+            title:"Item 4",
+            text: "Text 4",
+        },
+        {
+            title:"Item 5",
+            text: "Text 5",
+        },
+      ]
+    }
+  }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
-  },
-  image: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center"
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 15,
-  },
-});
+  _renderItem({item,index}){
+      return (
+        <View style={{
+            backgroundColor: 'lightblue',
+            borderRadius: 5,
+            height: 250,
+            padding: 50,
+            marginLeft: 25,
+            marginRight: 25, }}>
+          <Text style={{fontSize: 30}}>{item.title}</Text>
+          <Text>{item.text}</Text>
+        </View>
 
-export default HomeScreen;
+      )
+  }
+
+  render() {
+      return (
+        <SafeAreaView style={{flex: 1, backgroundColor:'white', paddingTop: 50, }}>
+          <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', }}>
+              <Carousel
+                layout={"default"}
+                ref={ref => this.carousel = ref}
+                data={this.state.carouselItems}
+                sliderWidth={300}
+                itemWidth={300}
+                renderItem={this._renderItem}
+                onSnapToItem = { index => this.setState({activeIndex:index}) } />
+          </View>
+        </SafeAreaView>
+      );
+  }
+}
