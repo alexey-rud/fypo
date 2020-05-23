@@ -104,13 +104,13 @@ const RegisterScreen = props => {
   }
   return (
     <ImageBackground style={ styles.imgBackground }
-    source={require('../Image/geometry-background.png')}
+    source={require('../Image/white-background2.jpg')}
     resizeMode='cover'
     > 
       <View style={{ flex: 1, }}>
         <Loader loading={loading} />
         <ScrollView keyboardShouldPersistTaps="handled">
-          <View style={{ alignItems: 'center' , marginTop: 50}}>
+          <View style={{ alignItems: 'center' }}>
             {/* <Image
               source={require('../Image/aboutreact.png')}
               style={{
@@ -120,9 +120,7 @@ const RegisterScreen = props => {
                 margin: 30,
               }}
             /> */}
-            <Text style={styles.titleTextStyle}>
-                  F Y P O
-                </Text>
+            <Image source={require('../Image/fypo.png')} style={{ width: 350, height: 150 }} />
           </View>
           <KeyboardAvoidingView enabled>
             <View style={styles.SectionStyle}>
