@@ -20,9 +20,7 @@ npm install
 
 Con la App Expo utiliza el código QR generado.
 
-## DOCUMENTACIÓN API
-
-# Documentación API FYPO
+## DOCUMENTACIÓN API FYPO
 
 ```
 http://34.225.64.4:8000/api/outfits/
