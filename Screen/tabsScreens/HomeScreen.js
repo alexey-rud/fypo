@@ -43,6 +43,20 @@ export default class HomeScreen extends React.Component {
   }
 
   _renderItem({item,index}){
+      const styles = StyleSheet.create({
+        container: {
+          paddingTop: 50,
+        },
+        tinyLogo: {
+          width: 100,
+          height: 100,
+        },
+        logo: {
+          width: 66,
+          height: 58,
+        },
+      });
+    
       return (
         <View style={{
             backgroundColor: 'lightblue',
@@ -53,6 +67,12 @@ export default class HomeScreen extends React.Component {
             marginRight: 25, }}>
           <Text style={{fontSize: 30}}>{item.title}</Text>
           <Text>{item.text}</Text>
+          <Image
+            style={styles.tinyLogo}
+            source={{
+              uri: 'https://reactnative.dev/img/tiny_logo.png',
+            }}
+          />
         </View>
 
       )
@@ -60,10 +80,14 @@ export default class HomeScreen extends React.Component {
 
   render() {
       return (
-        <SafeAreaView style={{flex: 1, backgroundColor:'white', paddingTop: 50, }}>
+        <SafeAreaView style={{flex: 1, backgroundColor:'white' }}>
           <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', }}>
               <Carousel
                 layout={"default"}
+                vertical={true}
+                sliderHeight={800}
+                itemHeight={300}
+                firstItem={1}
                 ref={ref => this.carousel = ref}
                 data={this.state.carouselItems}
                 sliderWidth={300}

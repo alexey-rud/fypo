@@ -4,7 +4,7 @@ import { SimpleSurvey } from 'react-native-simple-survey';
 import { COLORS } from '../res/validColors';
 
 const GREEN = 'rgba(141,196,63,1)';
-const PURPLE = 'white';
+const WHITE = 'white';
 
 const survey = [
     {
@@ -97,7 +97,7 @@ export default class SurveyScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { backgroundColor: PURPLE, answersSoFar: '' };
+        this.state = { backgroundColor: WHITE, answersSoFar: '' };
     }
 
     onSurveyFinished(answers) {
