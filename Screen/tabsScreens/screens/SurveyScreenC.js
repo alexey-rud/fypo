@@ -12,198 +12,70 @@ const survey = [
         questionText: '¡Bienvenido a Fypo! Ahora te haremos unas pocas preguntas. Dale a \'Continuar\' para empezar.',
     },
     {
-        questionType: 'TextInput',
-        questionText: 'Simple Survey supports free form text input.\n\nWhat is your favorite color?',
-        questionId: 'favoriteColor',
-        placeholderText: 'Tell me your favorite color!',
-    },
-    {
         questionType: 'NumericInput',
-        questionText: 'It also supports numeric input. Enter your favorite number here!',
-        questionId: 'favoriteNumber',
-        placeholderText: '42',
-    },
-    {
-        questionType: 'NumericInput',
-        questionText: 'New to 3.0, default values!\n\nHow many balls can you juggle at once?',
-        questionId: 'jugglingBalls',
-        defaultValue: '0'
+        questionText: '¿Cuál es tu edad?',
+        questionId: 'ageNumber',
+        placeholderText: '0 - 99',
     },
     {
         questionType: 'SelectionGroup',
         questionText:
-            'Naturally Simple Survey also has multiple choice questions. By default they acts like checkboxes, answers can be selected and deselected.\n\nWhat is your favorite pet?',
-        questionId: 'favoritePet',
+            '¿Con qué género te identificas?',
+        questionId: 'gender',
         options: [
             {
-                optionText: 'Dogs',
-                value: 'dog'
+                optionText: 'Hombre',
+                value: 'man'
             },
             {
-                optionText: 'Cats',
-                value: 'cat'
+                optionText: 'Mujer',
+                value: 'woman'
             },
             {
-                optionText: 'Ferrets',
-                value: 'ferret'
+                optionText: 'Fluido',
+                value: 'fluid'
             },
             {
-                optionText: 'Snakes',
-                value: 'snake'
+                optionText: 'Prefiero no decirlo',
+                value: 'dunno'
             },
-            {
-                optionText: 'Guinea pigs',
-                value: 'guinea'
-            }
         ]
     },
     {
         questionType: 'MultipleSelectionGroup',
         questionText:
-            'Select two or three of your favorite foods!',
+            '¿Con qué tipo de cuerpo te identificas? Puedes seleccionar hasta dos opciones',
         questionId: 'favoriteFoods',
         questionSettings: {
-            maxMultiSelect: 3,
-            minMultiSelect: 2,
-        },
-        options: [
-            {
-                optionText: 'Sticky rice dumplings',
-                value: 'sticky rice dumplings'
-            },
-            {
-                optionText: 'Pad Thai',
-                value: 'pad thai'
-            },
-            {
-                optionText: 'Steak and Eggs',
-                value: 'steak and eggs'
-            },
-            {
-                optionText: 'Tofu',
-                value: 'tofu'
-            },
-            {
-                optionText: 'Ice cream!',
-                value: 'ice cream'
-            },
-            {
-                optionText: 'Injera',
-                value: 'injera'
-            },
-            {
-                optionText: 'Biryani',
-                value: 'biryani'
-            },
-            {
-                optionText: 'Tamales',
-                value: 'tamales'
-            },
-        ]
-    },
-    {
-        questionType: 'MultipleSelectionGroup',
-        questionText:
-            'Simple Survey can auto advance after a question has been answered. Select two things you do to relax:',
-        questionId: 'relax',
-        questionSettings: {
             maxMultiSelect: 2,
-            minMultiSelect: 2,
-            autoAdvance: true,
+            minMultiSelect: 1,
         },
         options: [
             {
-                optionText: 'Reading a good book',
-                value: 'reading'
+                optionText: 'Triángulo o pera',
+                value: 'triangle'
             },
             {
-                optionText: 'Going on vacation',
-                value: 'vacations'
+                optionText: 'Manzana',
+                value: 'apple'
             },
             {
-                optionText: 'Eating meals with family',
-                value: 'meals'
+                optionText: 'Rectángulo',
+                value: 'rectangle'
             },
             {
-                optionText: 'Heading to the ocean',
-                value: 'ocean'
-            }
-        ]
-    },
-    {
-        questionType: 'SelectionGroup',
-        questionText:
-            'Simple Survey can also simulate radio button behavior. Pick from below: ',
-        questionId: 'radio',
-        questionSettings: {
-            allowDeselect: false,
-        },
-        options: [
-            {
-                optionText: 'I was forced to pick option 1',
-                value: 'option 1'
+                optionText: 'Reloj de arena',
+                value: 'sand_clock'
             },
             {
-                optionText: 'I have to pick option 2',
-                value: 'option 2'
-            },
-            {
-                optionText: 'I guess option 3',
-                value: 'option 3'
-            }
-        ]
-    },
-    {
-        questionType: 'SelectionGroup',
-        questionText:
-            'Simple Survey also supports default selections: ',
-        questionId: 'singleDefault',
-        questionSettings: {
-            defaultSelection: 0
-        },
-        options: [
-            {
-                optionText: 'This is the default option',
-                value: 'default'
-            },
-            {
-                optionText: 'This is the alternative option',
-                value: 'alternative'
-            },
-        ]
-    },
-    {
-        questionType: 'MultipleSelectionGroup',
-        questionText:
-            'And of course it supports multiple defaults: ',
-        questionId: 'multipleDefaults',
-        questionSettings: {
-            defaultSelection: [0, 2],
-            maxMultiSelect: 2,
-            minMultiSelect: 2,
-        },
-        options: [
-            {
-                optionText: 'This is the first default option',
-                value: 'first default'
-            },
-            {
-                optionText: 'This is the first alternate option',
-                value: 'first alternative'
-            },
-            {
-                optionText: 'This is the second default option',
-                value: 'second default'
-            },
-            {
-                optionText: 'This is the second alternate option',
-                value: 'second alternative'
+                optionText: 'Triángulo invertido',
+                value: 'inv_triangle'
             },
         ]
     },
     {
         questionType: 'Info',
-        questionText: 'That is all for the demo, tap finish to see your results!'
+        questionText: '¡Eso fue todo! Fácil, ¿verdad? ¡Gracias!'
     },
 ];
 
@@ -315,7 +187,7 @@ export default class SurveyScreen extends Component {
         return (
             <View style={{ flexGrow: 1, maxWidth: 100, marginTop: 10, marginBottom: 10 }}>
                 <Button
-                    title={'Finished'}
+                    title={'Continuar'}
                     onPress={onPress}
                     disabled={!enabled}
                     color={GREEN}
@@ -333,7 +205,7 @@ export default class SurveyScreen extends Component {
                 <Button
                     title={data.optionText}
                     onPress={onPress}
-                    color={isSelected ? GREEN : PURPLE}
+                    color={isSelected ? GREEN : '#70BCFF'}
                     style={isSelected ? { fontWeight: 'bold' } : {}} 
                     key={`button_${index}`}
                 />
@@ -356,9 +228,9 @@ export default class SurveyScreen extends Component {
                     style={styles.textBox}
                     onChangeText={text => onChange(text)}
                     numberOfLines={1}
-                    underlineColorAndroid={'white'}
+                    underlineColorAndroid={'black'}
                     placeholder={placeholder}
-                    placeholderTextColor={'rgba(184,184,184,1)'}
+                    placeholderTextColor={'black'}
                     value={value}
                     multiline
                     onBlur={onBlur}
@@ -373,8 +245,8 @@ export default class SurveyScreen extends Component {
         return (<TextInput 
             style={styles.numericInput}
             onChangeText={text => { onChange(text); }}
-            underlineColorAndroid={'white'}
-            placeholderTextColor={'rgba(184,184,184,1)'}
+            underlineColorAndroid={'grey'}
+            placeholderTextColor={'black'}
             value={String(value)}
             placeholder={placeholder}
             keyboardType={'numeric'}
@@ -426,14 +298,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         marginBottom: 20,
-        backgroundColor: 'white',
+        backgroundColor: '#B0DAFF',
         elevation: 20,
         borderRadius: 10,
     },
     surveyContainer: {
         width: 'auto',
         alignSelf: 'center',
-        backgroundColor: 'white',
+        backgroundColor: '#B0DAFF',
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
         borderTopLeftRadius: 5,
@@ -444,7 +316,7 @@ const styles = StyleSheet.create({
     },
     selectionGroupContainer: {
         flexDirection: 'column',
-        backgroundColor: 'grey',
+        backgroundColor: '#B0DAFF',
         alignContent: 'flex-end',
     },
     background: {
@@ -461,7 +333,7 @@ const styles = StyleSheet.create({
     textBox: {
         borderWidth: 1,
         borderColor: 'rgba(204,204,204,1)',
-        backgroundColor: 'grey',
+        backgroundColor: 'white',
         borderRadius: 10,
         padding: 10,
         textAlignVertical: 'top',
@@ -471,7 +343,7 @@ const styles = StyleSheet.create({
     numericInput: {
         borderWidth: 1,
         borderColor: 'rgba(204,204,204,1)',
-        backgroundColor: 'grey',
+        backgroundColor: 'white',
         borderRadius: 10,
         padding: 10,
         textAlignVertical: 'top',
