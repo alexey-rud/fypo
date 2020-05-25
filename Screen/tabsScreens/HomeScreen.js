@@ -84,6 +84,7 @@ export default class HomeScreen extends React.Component {
               <Carousel
                 layout={"default"}
                 vertical={true}
+                autoplay={true}
                 sliderHeight={800}
                 itemHeight={300}
                 firstItem={0}
@@ -95,6 +96,7 @@ export default class HomeScreen extends React.Component {
                 onSnapToItem = { index => this.setState({activeIndex:index}) } />
           </View>
         </SafeAreaView>
+        
       );
   }
 }

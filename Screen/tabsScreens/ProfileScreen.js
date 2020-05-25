@@ -88,7 +88,7 @@ export default class ProfileScreen extends React.Component {
             <View style={styles.container}>
                 <MenuProvider style={{flexDirection: 'column', padding: 30}}>
                     <Menu onSelect={value => alert(`Selected number: ${value}`)}>
-                    <Text h1 style={styles.text}>Mi perfil</Text>
+                    <Text h1 style={styles.text}>María Fernández</Text>
                     <MenuTrigger>
                         <Avatar
                         size="xlarge"
@@ -116,6 +116,7 @@ export default class ProfileScreen extends React.Component {
                     <Carousel
                     layout={"stack"}
                     vertical={false}
+                    autoplay={true}
                     sliderHeight={800}
                     firstItem={0}
                     ref={ref => this.carousel = ref}

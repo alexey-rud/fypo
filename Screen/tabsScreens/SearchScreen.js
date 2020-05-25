@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from "react-native";
-import { Avatar } from 'react-native-elements';
+import { Avatar, Divider } from 'react-native-elements';
+
 
 // Dependencia menú táctil
 import { MenuProvider } from 'react-native-popup-menu';
@@ -66,7 +67,14 @@ export default class ProfileScreen extends React.Component {
             height: 300,
             width: 300,
             marginLeft: 25,
-            marginRight: 25, }}>
+            marginRight: 25, 
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5}}>
           <Image
             style={styles.tinyLogo}
             source={{uri: item.photo_url}}
@@ -80,6 +88,7 @@ export default class ProfileScreen extends React.Component {
             <View style={styles.container}>
                 <MenuProvider style={{flexDirection: 'column', padding: 30}}>
                     <Menu onSelect={value => alert(`Selected number: ${value}`)}>
+                    <Text h1 style={styles.text}>Fypers</Text>
                     <MenuTrigger>
                         <Avatar
                         size="xlarge"
@@ -89,7 +98,7 @@ export default class ProfileScreen extends React.Component {
                             'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
                         }}
                         showAccessory
-                        containerStyle={{marginTop: 100, marginLeft: 'auto', marginRight: 'auto'}}
+                        containerStyle={{marginLeft: 'auto', marginRight: 'auto'}}
                         />
                     </MenuTrigger>
                     <MenuOptions customStyles={optionsStyles}>
@@ -100,10 +109,13 @@ export default class ProfileScreen extends React.Component {
                         <MenuOption value={3} disabled={true} text='Three' />
                     </MenuOptions>
                     </Menu>
+
+                    <Divider style={{ backgroundColor: 'black', marginTop: 35, height: 2 }} />
+                    <Text h1 style={styles.textArmario}>Mi armario</Text>
+
                     <Carousel
-                    layout={"tinder"}
+                    layout={"stack"}
                     vertical={false}
-                    marginTop={100}
                     sliderHeight={800}
                     firstItem={0}
                     ref={ref => this.carousel = ref}
@@ -125,6 +137,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    text: {
+      textAlign: 'center',
+      marginTop: 20,
+      padding: 10,
+    },
+    textArmario: {
+      textAlign: 'center',
+      marginTop: 30,
+      padding: 10
+    }
 });  
 
 const optionsStyles = {
