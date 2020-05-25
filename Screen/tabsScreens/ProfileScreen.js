@@ -14,35 +14,35 @@ import {
 // Dependencia carousel
 import Carousel from 'react-native-snap-carousel';
 
+// Dependencia axios
+import axios from "axios";
+
 export default class ProfileScreen extends React.Component {
     constructor(props){
         super(props);
         this.state = {
           activeIndex:0,
-          carouselItems: [
-          {
-              title:"Item 1",
-              text: "Text 1",
-          },
-          {
-              title:"Item 2",
-              text: "Text 2",
-          },
-          {
-              title:"Item 3",
-              text: "Text 3",
-          },
-          {
-              title:"Item 4",
-              text: "Text 4",
-          },
-          {
-              title:"Item 5",
-              text: "Text 5",
-          },
-        ]
+          carouselItems: []
       }
     }
+
+    componentDidMount() {
+      try {
+        axios
+        .get("http://34.225.64.4:8000/api/outfits/")
+        .then(response => {
+          const outfits = response.data.data;
+          this.setState({
+            outfitItems: outfits
+          })
+        })
+      .catch(function(error) {
+        console.log(error);
+      });
+      } catch (error) {
+        console.log(err);
+      }
+    };
 
     _renderItem({item,index}){
         const styles = StyleSheet.create({
@@ -50,8 +50,8 @@ export default class ProfileScreen extends React.Component {
             paddingTop: 50,
           },
           tinyLogo: {
-            width: 100,
-            height: 100,
+            width: 300,
+            height: 300,
           },
           logo: {
             width: 66,
@@ -61,23 +61,18 @@ export default class ProfileScreen extends React.Component {
       
         return (
           <View style={{
-              backgroundColor: 'lightblue',
-              borderRadius: 5,
-              height: 250,
-              padding: 50,
-              marginLeft: 25,
-              marginRight: 25, }}>
-            <Text style={{fontSize: 30}}>{item.title}</Text>
-            <Text>{item.text}</Text>
-            <Image
-              style={styles.tinyLogo}
-              source={{
-                uri: 'https://reactnative.dev/img/tiny_logo.png',
-              }}
-            />
-          </View>
-  
-        )
+            backgroundColor: '',
+            borderRadius: 5,
+            height: 300,
+            width: 300,
+            marginLeft: 25,
+            marginRight: 25, }}>
+          <Image
+            style={styles.tinyLogo}
+            source={{uri: item.photo_url}}
+          />
+        </View>
+      )
     }
 
     render() {
@@ -112,7 +107,7 @@ export default class ProfileScreen extends React.Component {
                     sliderHeight={800}
                     firstItem={0}
                     ref={ref => this.carousel = ref}
-                    data={this.state.carouselItems}
+                    data={this.state.outfitItems}
                     sliderWidth={300}
                     itemWidth={300}
                     renderItem={this._renderItem}
