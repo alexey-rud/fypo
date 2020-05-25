@@ -1,13 +1,122 @@
 import React from 'react';
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { Avatar } from 'react-native-elements';
 
-const SearchScreen = () => {
-    return ( 
-        <View style={styles.container}>
-            <Text>Search Screen</Text>
+// Dependencia menú táctil
+import { MenuProvider } from 'react-native-popup-menu';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+
+// Dependencia carousel
+import Carousel from 'react-native-snap-carousel';
+
+// Dependencia axios
+import axios from "axios";
+
+export default class ProfileScreen extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          activeIndex:0,
+          carouselItems: []
+      }
+    }
+
+    componentDidMount() {
+      try {
+        axios
+        .get("http://34.225.64.4:8000/api/outfits/")
+        .then(response => {
+          const outfits = response.data.data;
+          this.setState({
+            outfitItems: outfits
+          })
+        })
+      .catch(function(error) {
+        console.log(error);
+      });
+      } catch (error) {
+        console.log(err);
+      }
+    };
+
+    _renderItem({item,index}){
+        const styles = StyleSheet.create({
+          container: {
+            paddingTop: 50,
+          },
+          tinyLogo: {
+            width: 300,
+            height: 300,
+          },
+          logo: {
+            width: 66,
+            height: 58,
+          },
+        });
+      
+        return (
+          <View style={{
+            backgroundColor: '',
+            borderRadius: 5,
+            height: 300,
+            width: 300,
+            marginLeft: 25,
+            marginRight: 25, }}>
+          <Image
+            style={styles.tinyLogo}
+            source={{uri: item.photo_url}}
+          />
         </View>
-    );
-};
+      )
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <MenuProvider style={{flexDirection: 'column', padding: 30}}>
+                    <Menu onSelect={value => alert(`Selected number: ${value}`)}>
+                    <MenuTrigger>
+                        <Avatar
+                        size="xlarge"
+                        rounded
+                        source={{
+                            uri:
+                            'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                        }}
+                        showAccessory
+                        containerStyle={{marginTop: 100, marginLeft: 'auto', marginRight: 'auto'}}
+                        />
+                    </MenuTrigger>
+                    <MenuOptions customStyles={optionsStyles}>
+                        <MenuOption value={1} text='One' />
+                        <MenuOption value={2}>
+                        <Text style={{color: 'red'}}>Two</Text>
+                        </MenuOption>
+                        <MenuOption value={3} disabled={true} text='Three' />
+                    </MenuOptions>
+                    </Menu>
+                    <Carousel
+                    layout={"default"}
+                    vertical={false}
+                    marginTop={100}
+                    sliderHeight={800}
+                    firstItem={0}
+                    ref={ref => this.carousel = ref}
+                    data={this.state.outfitItems}
+                    sliderWidth={300}
+                    itemWidth={300}
+                    renderItem={this._renderItem}
+                    onSnapToItem = { index => this.setState({activeIndex:index}) } />
+                </MenuProvider>
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -18,4 +127,27 @@ const styles = StyleSheet.create({
     },
 });  
 
-export default SearchScreen;
+const optionsStyles = {
+    optionsContainer: {
+      backgroundColor: 'lightblue',
+      padding: 5,
+      marginLeft: 50,
+      marginRight: 50,
+      marginTop: 20
+    },
+    optionsWrapper: {
+      backgroundColor: 'lightblue',
+    },
+    optionWrapper: {
+      backgroundColor: 'white',
+      margin: 5,
+    },
+    optionTouchable: {
+      underlayColor: 'gold',
+      activeOpacity: 70,
+    },
+    optionText: {
+      color: 'brown',
+    },
+  };
+

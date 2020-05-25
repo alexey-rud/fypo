@@ -80,6 +80,7 @@ export default class ProfileScreen extends React.Component {
             <View style={styles.container}>
                 <MenuProvider style={{flexDirection: 'column', padding: 30}}>
                     <Menu onSelect={value => alert(`Selected number: ${value}`)}>
+                    <Text h1 style={styles.text}>Mi perfil</Text>
                     <MenuTrigger>
                         <Avatar
                         size="xlarge"
@@ -89,7 +90,7 @@ export default class ProfileScreen extends React.Component {
                             'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
                         }}
                         showAccessory
-                        containerStyle={{marginTop: 100, marginLeft: 'auto', marginRight: 'auto'}}
+                        containerStyle={{marginLeft: 'auto', marginRight: 'auto'}}
                         />
                     </MenuTrigger>
                     <MenuOptions customStyles={optionsStyles}>
@@ -100,10 +101,12 @@ export default class ProfileScreen extends React.Component {
                         <MenuOption value={3} disabled={true} text='Three' />
                     </MenuOptions>
                     </Menu>
+
+                    <Text h1 style={styles.textArmario}>Mi armario</Text>
+
                     <Carousel
                     layout={"default"}
                     vertical={false}
-                    marginTop={100}
                     sliderHeight={800}
                     firstItem={0}
                     ref={ref => this.carousel = ref}
@@ -125,6 +128,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    text: {
+      textAlign: 'center',
+      marginTop: 20,
+      padding: 10
+    },
+    textArmario: {
+      textAlign: 'center',
+      marginTop: 50,
+      padding: 10
+    }
 });  
 
 const optionsStyles = {
