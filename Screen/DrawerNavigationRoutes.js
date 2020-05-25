@@ -22,10 +22,8 @@ const Home_StackNavigator = createStackNavigator({
   First: {
     screen: HomeScreen,
     navigationOptions: ({ navigation }) => ({
-      headerLeft: <Ionicons name={Platform.OS === 'android' ? "md-camera": 'ios-camera'} size={30} style={{paddingLeft: 10,}} color={'black'} />,
       headerTitle: 'Inicio',
       headerTitleAlign: 'center',
-      headerRight: <Ionicons name={Platform.OS === 'android' ? "md-settings": 'ios-settings'} size={30} style={{paddingRight: 10,}} color={'black'} />,
       headerShown: true,
     }),
   },
