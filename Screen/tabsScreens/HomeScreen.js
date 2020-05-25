@@ -60,7 +60,15 @@ export default class HomeScreen extends React.Component {
             height: 300,
             width: 300,
             marginLeft: 25,
-            marginRight: 25, }}>
+            marginRight: 25, 
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5}}>
           <Image
             style={styles.tinyLogo}
             source={{uri: item.photo_url}}
@@ -78,7 +86,7 @@ export default class HomeScreen extends React.Component {
                 vertical={true}
                 sliderHeight={800}
                 itemHeight={300}
-                firstItem={1}
+                firstItem={0}
                 ref={ref => this.carousel = ref}
                 data={this.state.outfitItems}
                 sliderWidth={300}

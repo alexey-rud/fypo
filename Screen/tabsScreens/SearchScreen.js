@@ -101,7 +101,7 @@ export default class ProfileScreen extends React.Component {
                     </MenuOptions>
                     </Menu>
                     <Carousel
-                    layout={"default"}
+                    layout={"tinder"}
                     vertical={false}
                     marginTop={100}
                     sliderHeight={800}

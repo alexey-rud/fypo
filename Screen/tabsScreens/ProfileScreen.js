@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from "react-native";
-import { Avatar } from 'react-native-elements';
+import { Avatar, Divider } from 'react-native-elements';
+
 
 // Dependencia menú táctil
 import { MenuProvider } from 'react-native-popup-menu';
@@ -66,7 +67,14 @@ export default class ProfileScreen extends React.Component {
             height: 300,
             width: 300,
             marginLeft: 25,
-            marginRight: 25, }}>
+            marginRight: 25, 
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5}}>
           <Image
             style={styles.tinyLogo}
             source={{uri: item.photo_url}}
@@ -102,10 +110,11 @@ export default class ProfileScreen extends React.Component {
                     </MenuOptions>
                     </Menu>
 
+                    <Divider style={{ backgroundColor: 'black', marginTop: 35, height: 2 }} />
                     <Text h1 style={styles.textArmario}>Mi armario</Text>
 
                     <Carousel
-                    layout={"default"}
+                    layout={"stack"}
                     vertical={false}
                     sliderHeight={800}
                     firstItem={0}
@@ -131,11 +140,11 @@ const styles = StyleSheet.create({
     text: {
       textAlign: 'center',
       marginTop: 20,
-      padding: 10
+      padding: 10,
     },
     textArmario: {
       textAlign: 'center',
-      marginTop: 50,
+      marginTop: 30,
       padding: 10
     }
 });  
