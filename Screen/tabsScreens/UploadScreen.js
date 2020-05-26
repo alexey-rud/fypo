@@ -4,7 +4,9 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 
-import { Avatar, Divider } from 'react-native-elements';
+// Dependencias Input e Iconos
+import { Avatar, Divider, Input } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class ImagePickerExample extends React.Component {
   state = {
@@ -16,6 +18,20 @@ export default class ImagePickerExample extends React.Component {
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Input
+      placeholder="Comment"
+      leftIcon={{ type: 'font-awesome', name: 'comment' }}
+      style={styles}
+      onChangeText={value => this.setState({ comment: value })}
+      />
+
+      <Input
+        placeholder="Comment"
+        leftIcon={{ type: 'font-awesome', name: 'comment' }}
+        style={styles}
+        onChangeText={value => this.setState({ comment: value })}
+        />
+
         <Button title="SUBIR OUTFIT DESDE LA GALERÍA" onPress={this._pickImage} />
 
         <Divider style={{ backgroundColor: 'black', marginTop: 35, height: 2 }} />

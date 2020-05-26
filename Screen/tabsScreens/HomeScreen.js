@@ -106,7 +106,7 @@ export default class HomeScreen extends React.Component {
                   borderRadius: 5
                 }}
                 onPress={() => Linking.openURL(item.url_tienda)}>
-              Comprar outfit</Text>
+              Ver en tienda</Text>
           </ImageBackground>
         </View>
       )

@@ -284,6 +284,20 @@ export default class ProfileScreen extends React.Component {
                 }}
                 onPress={() => Linking.openURL('https://www.google.es')}>
               @{item.user_name}</Text>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: 'white',
+                  backgroundColor: 'black',
+                  opacity: 0.7,
+                  position: 'absolute',
+                  top: 200,
+                  left: 80,
+                  padding: 10,
+                  borderRadius: 5
+                }}
+                onPress={() => Linking.openURL('https://www.google.es')}>
+              Follow</Text>
           </ImageBackground>
       </View>
     )
