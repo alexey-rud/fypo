@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View, Text, Image } from "react-native";
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, Image , Animated} from "react-native";
 import { Avatar, Divider, Button, ButtonGroup } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -8,6 +8,43 @@ import Carousel from 'react-native-snap-carousel';
 
 // Dependencia axios
 import axios from "axios";
+
+class ImageLoader extends Component {
+  state = {
+    opacity: new Animated.Value(0),
+  }
+
+  onLoad = () => {
+    Animated.timing(this.state.opacity, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  render() {
+    return (
+      <Animated.Image
+        onLoad={this.onLoad}
+        {...this.props}
+        style={[
+          {
+            opacity: this.state.opacity,
+            transform: [
+              {
+                scale: this.state.opacity.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0.85, 1],
+                })
+              }
+          ]
+        },
+        this.props.style,
+        ]}
+      />
+    )
+  }
+}
 
 export default class ProfileScreen extends React.Component {
     constructor(props){
@@ -89,8 +126,6 @@ export default class ProfileScreen extends React.Component {
                 outfitItems: outfits
               })
               break;
-            default:
-                outfits.push({url_foto: 'https://img2.wikia.nocookie.net/__cb20110123071544/inciclopedia/images/1/14/Aqu%C3%AD_no_hay_nada.PNG'})
           }
         })  
         .catch(function(error) {
@@ -165,7 +200,7 @@ export default class ProfileScreen extends React.Component {
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
             elevation: 5}}>
-          <Image
+          <ImageLoader
             style={styles.tinyLogo}
             source={{uri: item.photo_url}}
           />
@@ -181,6 +216,7 @@ export default class ProfileScreen extends React.Component {
         tinyLogo: {
           width: 250,
           height: 250,
+          borderRadius: 10
         },
         logo: {
           width: 66,
@@ -226,7 +262,7 @@ export default class ProfileScreen extends React.Component {
                     firstItem={0}
                     ref={ref => this.carousel = ref}
                     data={this.state.userItems}
-                    sliderWidth={250}
+                    sliderWidth={800}
                     itemWidth={250}
                     renderItem={this._renderUserItem}
                     onSnapToItem = { index => this.setState({activeUserIndex:index}) } />
@@ -238,17 +274,17 @@ export default class ProfileScreen extends React.Component {
                       onPress={this.updateIndex}
                       selectedIndex={selectedIndex}
                       buttons={buttons}
-                      containerStyle={{height: 50}}
+                      containerStyle={{height: 40, margin: 5}}
                     />
 
                     <Carousel
                     layout={"stack"}
                     vertical={false}
-                    sliderHeight={250}
+                    sliderHeight={800}
                     firstItem={0}
                     ref={ref => this.carousel = ref}
                     data={this.state.outfitItems}
-                    sliderWidth={250}
+                    sliderWidth={800}
                     itemWidth={250}
                     renderItem={this._renderItem}
                     onSnapToItem = { index => this.setState({activeIndex:index}) } />
