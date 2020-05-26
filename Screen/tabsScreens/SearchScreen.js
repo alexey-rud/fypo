@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image , Animated} from "react-native";
+import { StyleSheet, View, Text, Image, ImageBackground, Animated, Linking } from "react-native";
 import { Avatar, Divider, Button, ButtonGroup } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -200,10 +200,31 @@ export default class ProfileScreen extends React.Component {
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
             elevation: 5}}>
-          <ImageLoader
-            style={styles.tinyLogo}
-            source={{uri: item.photo_url}}
-          />
+          <ImageBackground
+              style={{
+              height: 250,
+              width: 250,
+              position: 'relative',
+              top: 2,
+              left: 2,
+              }}
+              source={{uri: item.photo_url}}
+          >
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: 'white',
+                  backgroundColor: 'white',
+                  opacity: 0.7,
+                  position: 'absolute',
+                  bottom: 35,
+                  left: 50,
+                  padding: 10,
+                  borderRadius: 5
+                }}
+                onPress={() => Linking.openURL(item.url_tienda)}>
+              Comprar outfit</Text>
+          </ImageBackground>
         </View>
       )
     }
@@ -278,7 +299,7 @@ export default class ProfileScreen extends React.Component {
                     />
 
                     <Carousel
-                    layout={"stack"}
+                    layout={"default"}
                     vertical={false}
                     sliderHeight={800}
                     firstItem={0}
@@ -311,28 +332,3 @@ const styles = StyleSheet.create({
       padding: 10
     }
 });  
-
-const optionsStyles = {
-    optionsContainer: {
-      backgroundColor: 'lightblue',
-      padding: 5,
-      marginLeft: 50,
-      marginRight: 50,
-      marginTop: 20
-    },
-    optionsWrapper: {
-      backgroundColor: 'lightblue',
-    },
-    optionWrapper: {
-      backgroundColor: 'white',
-      margin: 5,
-    },
-    optionTouchable: {
-      underlayColor: 'gold',
-      activeOpacity: 70,
-    },
-    optionText: {
-      color: 'brown',
-    },
-  };
-
