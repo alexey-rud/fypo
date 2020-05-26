@@ -2,7 +2,7 @@
 import React from 'react';
 
 //Import all required component
-import { View, Text, StyleSheet, ImageBackground, SafeAreaView, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, SafeAreaView, FlatList, Linking } from 'react-native';
 import Constants from 'expo-constants';
 
 // Dependencia UI
@@ -69,10 +69,45 @@ export default class HomeScreen extends React.Component {
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
             elevation: 5}}>
-          <Image
-            style={styles.tinyLogo}
-            source={{uri: item.photo_url}}
-          />
+          <ImageBackground
+              style={{
+              height: 300,
+              width: 300,
+              position: 'relative',
+              top: 2,
+              left: 2,
+              }}
+              source={{uri: item.photo_url}}
+          >
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: 'black',
+                  backgroundColor: 'white',
+                  opacity: 0.7,
+                  position: 'absolute',
+                  bottom: 250,
+                  left: 10,
+                  padding: 10,
+                  borderRadius: 5
+                }}
+                onPress={() => Linking.openURL(item.url_tienda)}>
+              #{item.body_type}</Text>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: 'white',
+                  backgroundColor: 'white',
+                  opacity: 0.7,
+                  position: 'absolute',
+                  bottom: 35,
+                  left: 100,
+                  padding: 10,
+                  borderRadius: 5
+                }}
+                onPress={() => Linking.openURL(item.url_tienda)}>
+              Comprar outfit</Text>
+          </ImageBackground>
         </View>
       )
   }

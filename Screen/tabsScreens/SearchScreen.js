@@ -260,10 +260,31 @@ export default class ProfileScreen extends React.Component {
           shadowOpacity: 0.25,
           shadowRadius: 3.84,
           elevation: 5}}>
-        <Image
-          style={styles.tinyLogo}
-          source={{uri: item.url_foto}}
-        />
+        <ImageBackground
+              style={{
+              height: 250,
+              width: 250,
+              position: 'relative',
+              top: 2,
+              left: 2,
+              }}
+              source={{uri: item.url_foto}}
+          >
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: '#f58ff3',
+                  backgroundColor: 'white',
+                  opacity: 0.7,
+                  position: 'absolute',
+                  top: 10,
+                  left: 10,
+                  padding: 10,
+                  borderRadius: 5
+                }}
+                onPress={() => Linking.openURL('https://www.google.es')}>
+              @{item.user_name}</Text>
+          </ImageBackground>
       </View>
     )
   }
