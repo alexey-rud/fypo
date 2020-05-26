@@ -1,16 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from "react-native";
-import { Avatar, Divider } from 'react-native-elements';
-
-
-// Dependencia menú táctil
-import { MenuProvider } from 'react-native-popup-menu';
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from 'react-native-popup-menu';
+import { Avatar, Divider, Button, ButtonGroup } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // Dependencia carousel
 import Carousel from 'react-native-snap-carousel';
@@ -23,9 +14,92 @@ export default class ProfileScreen extends React.Component {
         super(props);
         this.state = {
           activeIndex:0,
-          carouselItems: []
+          activeUserIndex: 0,
+          selectedIndex: 2,
+          outfitItems: [],
+          userItems: []
       }
+      this.updateIndex = this.updateIndex.bind(this)
     }
+
+    updateIndex (selectedIndex) {
+      this.setState({selectedIndex})
+
+      try {
+        axios
+        .get("http://34.225.64.4:8000/api/outfits/")
+        .then(response => {
+          const outfits = [];  
+
+          switch(this.state.selectedIndex) {
+            case 0:
+              for (let index = 0; index < response.data.data.length; index++) {
+                if(response.data.data[index].body_type == 'triangle' || response.data.data[index].body_type == 'pear')  {
+                  outfits.push(response.data.data[index])
+                }
+              }
+              
+              this.setState({
+                outfitItems: outfits
+              })
+
+              console.log(outfits)
+              break;
+            case 1:
+              for (let index = 0; index < response.data.data.length; index++) {
+                if(response.data.data[index].body_type == 'inverted_triangle')  {
+                  outfits.push(response.data.data[index])
+                }
+              }
+              
+              this.setState({
+                outfitItems: outfits
+              })
+              break;
+            case 2:
+              for (let index = 0; index < response.data.data.length; index++) {
+                if(response.data.data[index].body_type == 'rectangle')  {
+                  outfits.push(response.data.data[index])
+                }
+              }
+              
+              this.setState({
+                outfitItems: outfits
+              })
+              break;
+            case 3:
+              for (let index = 0; index < response.data.data.length; index++) {
+                if(response.data.data[index].body_type == 'hourglass')  {
+                  outfits.push(response.data.data[index])
+                }
+              }
+              
+              this.setState({
+                outfitItems: outfits
+              })
+              break;
+            case 4:
+              for (let index = 0; index < response.data.data.length; index++) {
+                if(response.data.data[index].body_type == 'apple')  {
+                  outfits.push(response.data.data[index])
+                }
+              }
+              
+              this.setState({
+                outfitItems: outfits
+              })
+              break;
+            default:
+                outfits.push({url_foto: 'https://img2.wikia.nocookie.net/__cb20110123071544/inciclopedia/images/1/14/Aqu%C3%AD_no_hay_nada.PNG'})
+          }
+        })  
+        .catch(function(error) {
+          console.log(error);
+        });
+        } catch (error) {
+          console.log(err);
+        }
+    }    
 
     componentDidMount() {
       try {
@@ -43,6 +117,22 @@ export default class ProfileScreen extends React.Component {
       } catch (error) {
         console.log(err);
       }
+
+      try {
+        axios
+        .get("http://34.225.64.4:8000/api/users/")
+        .then(response => {
+          const users = response.data.data;
+          this.setState({
+            userItems: users
+          })
+        })
+      .catch(function(error) {
+        console.log(error);
+      });
+      } catch (error) {
+        console.log(err);
+      }
     };
 
     _renderItem({item,index}){
@@ -51,8 +141,8 @@ export default class ProfileScreen extends React.Component {
             paddingTop: 50,
           },
           tinyLogo: {
-            width: 300,
-            height: 300,
+            width: 250,
+            height: 250,
           },
           logo: {
             width: 66,
@@ -64,8 +154,8 @@ export default class ProfileScreen extends React.Component {
           <View style={{
             backgroundColor: '',
             borderRadius: 5,
-            height: 300,
-            width: 300,
+            height: 250,
+            width: 250,
             marginLeft: 25,
             marginRight: 25, 
             shadowOffset: {
@@ -83,48 +173,85 @@ export default class ProfileScreen extends React.Component {
       )
     }
 
+    _renderUserItem({item,index}){
+      const styles = StyleSheet.create({
+        container: {
+          paddingTop: 50,
+        },
+        tinyLogo: {
+          width: 250,
+          height: 250,
+        },
+        logo: {
+          width: 66,
+          height: 58,
+        },
+      });
+    
+      return (
+        <View style={{
+          backgroundColor: '',
+          borderRadius: 5,
+          height: 250,
+          width: 250,
+          marginLeft: 25,
+          marginRight: 25, 
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5}}>
+        <Image
+          style={styles.tinyLogo}
+          source={{uri: item.url_foto}}
+        />
+      </View>
+    )
+  }
+
     render() {
+        const buttons = ['Triángulo', 'Triángulo invertido', 'Rectángulo', 'Reloj de arena', 'Manzana']
+        const { selectedIndex } = this.state
+
         return (
             <View style={styles.container}>
-                <MenuProvider style={{flexDirection: 'column', padding: 30}}>
-                    <Menu onSelect={value => alert(`Selected number: ${value}`)}>
-                    <Text h1 style={styles.text}>Fypers</Text>
-                    <MenuTrigger>
-                        <Avatar
-                        size="xlarge"
-                        rounded
-                        source={{
-                            uri:
-                            'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-                        }}
-                        showAccessory
-                        containerStyle={{marginLeft: 'auto', marginRight: 'auto'}}
-                        />
-                    </MenuTrigger>
-                    <MenuOptions customStyles={optionsStyles}>
-                        <MenuOption value={1} text='One' />
-                        <MenuOption value={2}>
-                        <Text style={{color: 'red'}}>Two</Text>
-                        </MenuOption>
-                        <MenuOption value={3} disabled={true} text='Three' />
-                    </MenuOptions>
-                    </Menu>
+                    <Text h1 style={styles.text}>Hot Fypers</Text>
 
-                    <Divider style={{ backgroundColor: 'black', marginTop: 35, height: 2 }} />
-                    <Text h1 style={styles.textArmario}>Mi armario</Text>
+                    <Carousel
+                    layout={"default"}
+                    vertical={false}
+                    sliderHeight={250}
+                    firstItem={0}
+                    ref={ref => this.carousel = ref}
+                    data={this.state.userItems}
+                    sliderWidth={250}
+                    itemWidth={250}
+                    renderItem={this._renderUserItem}
+                    onSnapToItem = { index => this.setState({activeUserIndex:index}) } />
+
+                    <Divider style={{ backgroundColor: 'black', marginTop: 15, height: 2 }} />
+                    <Text h1 style={styles.textArmario}>Búsqueda</Text>
+
+                    <ButtonGroup
+                      onPress={this.updateIndex}
+                      selectedIndex={selectedIndex}
+                      buttons={buttons}
+                      containerStyle={{height: 50}}
+                    />
 
                     <Carousel
                     layout={"stack"}
                     vertical={false}
-                    sliderHeight={800}
+                    sliderHeight={250}
                     firstItem={0}
                     ref={ref => this.carousel = ref}
                     data={this.state.outfitItems}
-                    sliderWidth={300}
-                    itemWidth={300}
+                    sliderWidth={250}
+                    itemWidth={250}
                     renderItem={this._renderItem}
                     onSnapToItem = { index => this.setState({activeIndex:index}) } />
-                </MenuProvider>
             </View>
         )
     }
@@ -144,7 +271,7 @@ const styles = StyleSheet.create({
     },
     textArmario: {
       textAlign: 'center',
-      marginTop: 30,
+      marginTop: 0,
       padding: 10
     }
 });  
