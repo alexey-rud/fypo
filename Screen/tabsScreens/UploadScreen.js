@@ -7,6 +7,9 @@ import * as Permissions from 'expo-permissions';
 // Dependencia axios
 import axios from "axios";
 
+// Modal
+import Modal from 'react-native-modal';
+
 // Dependencias Input e Iconos
 import { Avatar, Divider, Input, CheckBox } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,7 +21,8 @@ export default class ImagePickerExample extends React.Component {
     selectedValue: 'triangle',
     value: '',
     url_tienda: '',
-    photo_url: ''
+    photo_url: '',
+    isModalVisible: false
   };
 
   subirImagen() {
@@ -28,12 +32,20 @@ export default class ImagePickerExample extends React.Component {
       photo_url: this.state.photo_url,
       id_usuario: '5ecc5736f35105128ef1fdb1'
     })
-    .then(function (response) {
-      console.log(response);
+    .then( (response) => {
+      this.setState({
+        isModalVisible: true
+      })
     })
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  closeModal() {
+    this.setState({
+      isModalVisible: false
+    })
   }
 
   render() {
@@ -92,6 +104,12 @@ export default class ImagePickerExample extends React.Component {
           onPress={() => this.subirImagen()}
         />
       </View>
+
+      <Modal onBackdropPress={()=>this.closeModal()}  isVisible={this.state.isModalVisible} style={{backgroundColor:'white'}}>
+      <View style={{ flex: 1,justifyContent:'center'}}>
+      <Text style={{textAlign:'center'}}>¡Has subido tu outfit!</Text>
+      </View>
+      </Modal>
       </SafeAreaView>
     );
   }

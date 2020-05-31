@@ -102,11 +102,11 @@ export default class ProfileScreen extends React.Component {
                         />
                     </MenuTrigger>
                     <MenuOptions customStyles={optionsStyles}>
-                        <MenuOption value={1} text='One' />
-                        <MenuOption value={2}>
+                        <MenuOption value={1} text='Editar nombre' />
+                        <MenuOption value={2} text='Cambiar contraseña'>
                         <Text style={{color: 'red'}}>Two</Text>
                         </MenuOption>
-                        <MenuOption value={3} disabled={true} text='Three' />
+                        <MenuOption value={3} text='Cambiar imagen' />
                     </MenuOptions>
                     </Menu>
 
