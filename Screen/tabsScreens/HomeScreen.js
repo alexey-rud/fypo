@@ -1,9 +1,10 @@
 //Import React
-import React from 'react';
+import React, { useState } from 'react';
 
 //Import all required component
 import { View, Text, StyleSheet, ImageBackground, SafeAreaView, FlatList, Linking } from 'react-native';
 import Constants from 'expo-constants';
+import Dialog, { DialogContent } from 'react-native-popup-dialog';
 
 // Dependencia UI
 import { Card, ListItem, Button, Icon, Image } from 'react-native-elements'
@@ -14,14 +15,16 @@ import Carousel from 'react-native-snap-carousel';
 // Dependencia axios
 import axios from "axios";
 
+
+
 export default class HomeScreen extends React.Component {
  
   constructor(props){
       super(props);
       this.state = {
         activeIndex:0,
-        outfitItems: []
-      }
+        outfitItems: [],
+      }     
   }    
   
   componentDidMount() {
@@ -40,9 +43,46 @@ export default class HomeScreen extends React.Component {
     } catch (error) {
       console.log(err);
     }
-    };
+  };
 
   _renderItem({item,index}){
+    function like (id_outfit) {
+      try {
+        axios.post('http://34.225.64.4:8000/api/likes/', {
+          id_usuario: '5ecc57acf35105128ef1fdb3',
+          id_outfit: id_outfit
+        })
+        .then(function (response) {
+          console.log(response.data.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      } catch (error) {
+        console.log(err);
+      }
+      };
+
+      function renderLikes(id_outfit) {
+        var num_likes = 0;
+
+        axios
+          .get("http://34.225.64.4:8000/api/likes/")
+          .then(response => {
+            const likes = response.data.data;
+            
+            for (let index = 0; index < likes.length; index++) {
+              if(likes[index].id_outfit == id_outfit) num_likes++;
+            }
+
+          })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+        return num_likes;
+      }
+    
       const styles = StyleSheet.create({
         container: {
           paddingTop: 50,
@@ -69,6 +109,7 @@ export default class HomeScreen extends React.Component {
             shadowOpacity: 0.25,
             shadowRadius: 3.84,
             elevation: 5}}>
+
           <ImageBackground
               style={{
               height: 300,
@@ -91,8 +132,38 @@ export default class HomeScreen extends React.Component {
                   padding: 10,
                   borderRadius: 5
                 }}
-                onPress={() => Linking.openURL(item.url_tienda)}>
+                >
               #{item.body_type}</Text>
+
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: 'red',
+                  backgroundColor: 'white',
+                  opacity: 0.7,
+                  position: 'absolute',
+                  top: 10,
+                  right: 10,
+                  padding: 10,
+                  borderRadius: 5
+                }}
+                onPress={() => like(item._id)}>
+              Like</Text>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  color: 'red',
+                  backgroundColor: 'white',
+                  opacity: 0.7,
+                  position: 'absolute',
+                  top: 10,
+                  right: 60,
+                  padding: 10,
+                  borderRadius: 5
+                }}
+                onPress={() => like(item._id)}>
+              {renderLikes(item._id)} </Text>
+
               <Text
                 style={{
                   fontWeight: 'bold',
@@ -116,19 +187,20 @@ export default class HomeScreen extends React.Component {
       return (
         <SafeAreaView style={{flex: 1, backgroundColor:'white' }}>
           <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', }}>
-              <Carousel
-                layout={"default"}
-                vertical={true}
-                autoplay={true}
-                sliderHeight={800}
-                itemHeight={300}
-                firstItem={0}
-                ref={ref => this.carousel = ref}
-                data={this.state.outfitItems}
-                sliderWidth={300}
-                itemWidth={300}
-                renderItem={this._renderItem}
-                onSnapToItem = { index => this.setState({activeIndex:index}) } />
+
+            <Carousel
+              layout={"default"}
+              vertical={true}
+              autoplay={true}
+              sliderHeight={800}
+              itemHeight={300}
+              firstItem={0}
+              ref={ref => this.carousel = ref}
+              data={this.state.outfitItems}
+              sliderWidth={300}
+              itemWidth={300}
+              renderItem={this._renderItem}
+              onSnapToItem = { index => this.setState({activeIndex:index}) } />
           </View>
         </SafeAreaView>
         
